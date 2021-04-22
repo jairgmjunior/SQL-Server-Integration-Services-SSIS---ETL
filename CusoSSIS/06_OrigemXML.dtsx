@@ -1,0 +1,436 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/20/2021 8:38:15 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAIR_AVELL"
+  DTS:CreatorName="JAIR_AVELL\jairg"
+  DTS:DTSID="{7141421C-2B65-40BC-8A55-CCE496B39DAF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.165"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="06_OrigemXML"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{A6EBE8AA-DF57-4AC9-8F0B-2F430737EBAE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{3853F0C6-67C4-49F8-9B52-5059ED083BC8}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\workspace_estudos\Udemy\Etl\SQL Server Integration\SSIS_ETL\Destino\arquivos_excel\Xml.xls;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Fluxo de Dados"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{019C397E-FD7C-49E8-9245-365D637D5BF8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Fluxo de Dados"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Destino do Excel"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Destino do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Destino do Excel"
+              name="Destino do Excel"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">XML</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino do Excel">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].Columns[codigo_municipio]"
+                      cachedDataType="ui1"
+                      cachedName="codigo_municipio"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[codigo_municipio]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[codigo_municipio]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].Columns[nome_municipio]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nome_municipio"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[nome_municipio]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[nome_municipio]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].Columns[geoibgeId]"
+                      cachedDataType="ui4"
+                      cachedName="geoibgeId"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[geoibgeId]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[geoibgeId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[codigo_municipio]"
+                      dataType="wstr"
+                      length="255"
+                      name="codigo_municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[nome_municipio]"
+                      dataType="wstr"
+                      length="255"
+                      name="nome_municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[geoibgeId]"
+                      dataType="wstr"
+                      length="255"
+                      name="geoibgeId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Outputs[Saída de Erro de Destino do Excel]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino do Excel"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Outputs[Saída de Erro de Destino do Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Destino do Excel.Outputs[Saída de Erro de Destino do Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Outputs[Saída de Erro de Destino do Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Destino do Excel.Outputs[Saída de Erro de Destino do Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\XML Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from an XML file. For example, extract catalog data from an XML file that represents catalogs and catalog items. Before using, specify the schema and generate an output for each XML element.;Microsoft Corporation;Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Extracts data from an XML file. For example, extract catalog data from an XML file that represents catalogs and catalog items. Before using, specify the schema and generate an output for each XML element."
+              name="XML Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.XmlSourceAdapter</property>
+                <property
+                  dataType="System.String"
+                  description="The XML data used by the XML source adapter."
+                  expressionType="Notify"
+                  name="XMLData">D:\workspace_estudos\Udemy\Etl\SQL Server Integration\SSIS_ETL\Origem\arquivos_xml\TCE_CE.xml.xml</property>
+                <property
+                  dataType="System.String"
+                  description="The variable used by the XML source adapter to specify XML data."
+                  name="XMLDataVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how the XML source adapter gets XML data."
+                  name="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The XML schema definition used by the XML source adapter."
+                  expressionType="Notify"
+                  name="XMLSchemaDefinition">D:\workspace_estudos\Udemy\Etl\SQL Server Integration\SSIS_ETL\Origem\arquivos_xml\TCE_C.xsd</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Identifies whether or not to use inline schema."
+                  name="UseInlineSchema">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how XML integer types are mapped."
+                  name="XMLIntegerMapping"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.XmlSourceAdapter+XMLIntegerMappingConverter">0</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row]"
+                  name="Row">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Identifies the rowset associated with the output."
+                      name="RowsetID">Row</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[codigo_municipio]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].ExternalColumns[codigo_municipio]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[codigo_municipio]"
+                      name="codigo_municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[nome_municipio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].ExternalColumns[nome_municipio]"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[nome_municipio]"
+                      name="nome_municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[geoibgeId]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].ExternalColumns[geoibgeId]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].Columns[geoibgeId]"
+                      name="geoibgeId"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].ExternalColumns[codigo_municipio]"
+                      dataType="ui1"
+                      name="codigo_municipio">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Byte</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].ExternalColumns[nome_municipio]"
+                      dataType="wstr"
+                      length="255"
+                      name="nome_municipio">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row].ExternalColumns[geoibgeId]"
+                      dataType="ui4"
+                      name="geoibgeId">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.UInt32</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output]"
+                  isErrorOut="true"
+                  name="Row Error Output">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Identifies the rowset associated with the output."
+                      name="RowsetID">Row</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[codigo_municipio]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].ExternalColumns[codigo_municipio]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[codigo_municipio]"
+                      name="codigo_municipio" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[nome_municipio]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].ExternalColumns[nome_municipio]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[nome_municipio]"
+                      name="nome_municipio" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[geoibgeId]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].ExternalColumns[geoibgeId]"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[geoibgeId]"
+                      name="geoibgeId" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].ExternalColumns[codigo_municipio]"
+                      dataType="nText"
+                      name="codigo_municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].ExternalColumns[nome_municipio]"
+                      dataType="nText"
+                      name="nome_municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row Error Output].ExternalColumns[geoibgeId]"
+                      dataType="nText"
+                      name="geoibgeId" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Row]"
+              endId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel]"
+              name="Row"
+              startId="Package\Tarefa Fluxo de Dados\XML Source.Outputs[Row]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarefa Fluxo de Dados"
+          TopLeft="363,191" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarefa Fluxo de Dados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Tarefa Fluxo de Dados\XML Source"
+          TopLeft="395,208" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Tarefa Fluxo de Dados\Destino do Excel"
+          TopLeft="389,379" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Row]"
+          TopLeft="464.75,250">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,129"
+              Start="0,0"
+              End="0,121.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,121.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,52.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Destino do Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
