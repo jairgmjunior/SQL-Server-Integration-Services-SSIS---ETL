@@ -1,0 +1,1016 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/26/2021 8:24:51 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAIR_AVELL"
+  DTS:CreatorName="JAIR_AVELL\jairg"
+  DTS:DTSID="{04BD148F-53FA-4C30-A606-0E1171826808}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.165"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{9E205980-B05D-401C-A760-A7D3767FD00C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Fluxo de Dados"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{6EB64857-6D0D-4509-99B5-10782137F31D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Fluxo de Dados"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Classificar"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+              name="Classificar"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o número máximo de threads a usar para classificação."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada]"
+                  name="Classificar Entrada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOME"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[NOME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída]"
+                  isSorted="true"
+                  name="Classificar Saída">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[ID]"
+                      name="ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[NOME]"
+                      name="NOME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[NOME]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Classificar 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+              name="Classificar 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o número máximo de threads a usar para classificação."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Classificar 1.Inputs[Classificar Entrada]"
+                  name="Classificar Entrada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 1.Inputs[Classificar Entrada].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 1.Inputs[Classificar Entrada].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOME"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[NOME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída]"
+                  isSorted="true"
+                  name="Classificar Saída">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída].Columns[ID]"
+                      name="ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída].Columns[NOME]"
+                      name="NOME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[NOME]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Classificar 2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+              name="Classificar 2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o número máximo de threads a usar para classificação."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Classificar 2.Inputs[Classificar Entrada]"
+                  name="Classificar Entrada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 2.Inputs[Classificar Entrada].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 2.Inputs[Classificar Entrada].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOME"
+                      lineageId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[NOME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Classificar 2.Outputs[Classificar Saída]"
+                  isSorted="true"
+                  name="Classificar Saída">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 2.Outputs[Classificar Saída].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar 2.Outputs[Classificar Saída].Columns[ID]"
+                      name="ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar 2.Outputs[Classificar Saída].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar 2.Outputs[Classificar Saída].Columns[NOME]"
+                      name="NOME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[NOME]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Mesclar"
+              componentClassID="Microsoft.Merge"
+              contactInfo="Mesclar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina linhas de vários fluxos de dados classificados em um fluxo de dados classificado. Ao contrário da Junção de Mesclagem, todas as linhas fluem para a saída. Por exemplo, combine duas listas classificadas de clientes em uma única lista classificada. Se a classificação não for importante, use a transformação Unir Tudo. "
+              name="Mesclar"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 1]"
+                  name="Mesclar Entrada 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 1].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[ID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Identificação de linhagem de coluna de saída"
+                          name="OutputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[ID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 1].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOME"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[NOME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Identificação de linhagem de coluna de saída"
+                          name="OutputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[NOME]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 2]"
+                  name="Mesclar Entrada 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 2].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída].Columns[ID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Identificação de linhagem de coluna de saída"
+                          name="OutputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[ID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 2].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOME"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída].Columns[NOME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Identificação de linhagem de coluna de saída"
+                          name="OutputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[NOME]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1]"
+                  isSorted="true"
+                  name="Mesclar Saída 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[ID]"
+                      name="ID"
+                      sortKeyPosition="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1].Columns[NOME]"
+                      name="NOME" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Distribui cada linha de entrada em cada linha em uma ou mais saídas. Por exemplo, ramifique seu fluxo de dados para criar uma cópia de dados de forma que alguns valores possam ser mascarados antes do compartilhamento com parceiros externos."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Multicast.Inputs[Multicast Entrada 1]"
+                  name="Multicast Entrada 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Multicast.Outputs[Multicast Saída 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Saída 1"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Multicast.Inputs[Multicast Entrada 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB - Automovel 01"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[AUTOMOVEL01]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Connections[OleDbConnection]"
+                  connectionManagerID="{419D6BE9-A09E-4DB6-AD98-BA0CAA67AA73}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JAIR_AVELL.Exemplo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      name="NOME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      name="NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB - Automovel 02"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[AUTOMOVEL02]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Connections[OleDbConnection]"
+                  connectionManagerID="{419D6BE9-A09E-4DB6-AD98-BA0CAA67AA73}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JAIR_AVELL.Exemplo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      name="NOME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      name="NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída]"
+              endId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 1]"
+              name="Classificar Saída"
+              startId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída1]"
+              endId="Package\Tarefa Fluxo de Dados\Mesclar.Inputs[Mesclar Entrada 2]"
+              name="Classificar Saída"
+              startId="Package\Tarefa Fluxo de Dados\Classificar 1.Outputs[Classificar Saída]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída2]"
+              endId="Package\Tarefa Fluxo de Dados\Multicast.Inputs[Multicast Entrada 1]"
+              name="Classificar Saída"
+              startId="Package\Tarefa Fluxo de Dados\Classificar 2.Outputs[Classificar Saída]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Mesclar Saída 1]"
+              endId="Package\Tarefa Fluxo de Dados\Classificar 2.Inputs[Classificar Entrada]"
+              name="Mesclar Saída 1"
+              startId="Package\Tarefa Fluxo de Dados\Mesclar.Outputs[Mesclar Saída 1]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+              endId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01.Outputs[Saída de Origem OLE DB]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB1]"
+              endId="Package\Tarefa Fluxo de Dados\Classificar 1.Inputs[Classificar Entrada]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarefa Fluxo de Dados"
+          TopLeft="391,150" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarefa Fluxo de Dados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01"
+          TopLeft="181,96" />
+        <NodeLayout
+          Size="253,42"
+          Id="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02"
+          TopLeft="439,98" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Tarefa Fluxo de Dados\Classificar"
+          TopLeft="225,200" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Tarefa Fluxo de Dados\Classificar 1"
+          TopLeft="520,204" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+          TopLeft="291.5,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB1]"
+          TopLeft="565.5,140">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5,64"
+              Start="0,0"
+              End="17.5,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="4,32" />
+                  <mssgle:LineSegment
+                    End="13.5,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5,32"
+                    Point2="17.5,32"
+                    Point3="17.5,36" />
+                  <mssgle:LineSegment
+                    End="17.5,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Tarefa Fluxo de Dados\Mesclar"
+          TopLeft="372,326" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída]"
+          TopLeft="288,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="123.333333333333,84"
+              Start="0,0"
+              End="123.333333333333,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.7024221453287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.7024221453287"
+                    Point2="0,49.7024221453287"
+                    Point3="4,49.7024221453287" />
+                  <mssgle:LineSegment
+                    End="119.333333333333,49.7024221453287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="119.333333333333,49.7024221453287"
+                    Point2="123.333333333333,49.7024221453287"
+                    Point3="123.333333333333,53.7024221453287" />
+                  <mssgle:LineSegment
+                    End="123.333333333333,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída1]"
+          TopLeft="583,246">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-136.333333333333,80"
+              Start="0,0"
+              End="-136.333333333333,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.3356401384083" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.3356401384083"
+                    Point2="0,47.3356401384083"
+                    Point3="-4,47.3356401384083" />
+                  <mssgle:LineSegment
+                    End="-132.333333333333,47.3356401384083" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-132.333333333333,47.3356401384083"
+                    Point2="-136.333333333333,47.3356401384083"
+                    Point3="-136.333333333333,51.3356401384083" />
+                  <mssgle:LineSegment
+                    End="-136.333333333333,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Tarefa Fluxo de Dados\Multicast"
+          TopLeft="375,543" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Tarefa Fluxo de Dados\Classificar 2"
+          TopLeft="366,429" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Mesclar Saída 1]"
+          TopLeft="431.25,368">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída2]"
+          TopLeft="434.25,471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,24.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 01">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Origem OLE DB - Automovel 02">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

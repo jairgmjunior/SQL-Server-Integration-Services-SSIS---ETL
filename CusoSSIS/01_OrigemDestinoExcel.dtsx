@@ -7,12 +7,12 @@
   DTS:CreatorName="JAIR_AVELL\jairg"
   DTS:DTSID="{31F04772-75C8-42A5-B16F-1899DB7F4D7B}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.94"
+  DTS:LastModifiedProductVersion="15.0.2000.165"
   DTS:LocaleID="1046"
   DTS:ObjectName="01_OrigemDestinoExcel"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{73FC7F01-D8D2-4282-844F-E163514468FF}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{99A6AC87-0338-4301-92C9-45F57931248E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,6 +23,8 @@
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
           DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\SSIS_ETL\Origem\arquivos_excel\CNE_082019.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -33,7 +35,21 @@
       DTS:ObjectName="Excel Connection Manager 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
           DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\SSIS_ETL\Destino\CNE_Out.xls;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{99DDE4C0-B9A3-46C0-A634-D6D584D43F9E}"
+      DTS:ObjectName="Excel Connection Manager 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\workspace_estudos\Udemy\Etl\SQL Server Integration\SSIS_ETL\Origem\arquivos_excel\CNE_082019.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -68,7 +84,7 @@
                 <property
                   dataType="System.String"
                   description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
-                  name="OpenRowset">CNEOut</property>
+                  name="OpenRowset">'201908_CNE$'</property>
                 <property
                   dataType="System.String"
                   description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
@@ -103,8 +119,8 @@
               <connections>
                 <connection
                   refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
-                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 2]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 2]"
                   description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                   name="OleDbConnection" />
               </connections>
@@ -158,8 +174,7 @@
                       name="DESC_SECAO" />
                     <externalMetadataColumn
                       refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[COD_SUBCLASSE]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="r8"
                       name="COD_SUBCLASSE" />
                     <externalMetadataColumn
                       refId="Package\Tarefa Fluxo de Dados\Destino do Excel.Inputs[Entrada de Destino do Excel].ExternalColumns[DESC_SUBCLASSE]"
