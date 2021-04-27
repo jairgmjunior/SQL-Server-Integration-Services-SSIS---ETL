@@ -1,0 +1,570 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/27/2021 8:30:57 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAIR_AVELL"
+  DTS:CreatorName="JAIR_AVELL\jairg"
+  DTS:DTSID="{17547B95-E5DA-4F58-9C7A-7EB01888030E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.165"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{C2EFE7C8-9CED-472C-82A6-5801894CB305}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Fluxo de Dados"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{B73DF5AD-9BC4-4A99-B86E-E5689847C4CB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Fluxo de Dados"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Distribui cada linha de entrada em cada linha em uma ou mais saídas. Por exemplo, ramifique seu fluxo de dados para criar uma cópia de dados de forma que alguns valores possam ser mascarados antes do compartilhamento com parceiros externos."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Multicast.Inputs[Multicast Entrada 1]"
+                  name="Multicast Entrada 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Multicast.Outputs[Multicast Saída 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Saída 1"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Multicast.Inputs[Multicast Entrada 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[ALIMENTOS02]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{419D6BE9-A09E-4DB6-AD98-BA0CAA67AA73}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JAIR_AVELL.Exemplo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[PRODUTO]"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]"
+                      name="PRODUTO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[PRODUTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PRODUTO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[PRODUTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[PRODUTO]"
+                      name="PRODUTO" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa"
+              componentClassID="Microsoft.FuzzyLookup"
+              contactInfo="Pesquisa Difusa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;5"
+              description="Executa tarefas de limpeza de dados, como padronizar dados, corrigir dados e fornecer valores ausentes. Usa a correspondência difusa para retornar uma ou mais ocorrências próximas de uma tabela de referência. Por exemplo, pesquise dados de clientes por endereço, mesmo se os seus dados de endereço de entrada não corresponderem exatamente aos dados de endereço de referência."
+              name="Pesquisa Difusa"
+              version="5">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Indica se uma tabela de índice de correspondência difusa existente deve ser reutilizada ou se uma nova tabela deve ser criada. A nova tabela de índice pode ser temporária, persistente ou persistente e mantida."
+                  name="MatchIndexOptions"
+                  typeConverter="tcMatchIndexOptions">1</property>
+                <property
+                  dataType="System.Null"
+                  description="Especifica a quantidade máxima de memória (MB) que esta instância da transformação Pesquisa Difusa pode usar. Se 0 for atribuído, a transformação ajustará automaticamente o uso da memória com base nos requisitos e na memória de sistema disponível."
+                  expressionType="Notify"
+                  name="MaxMemoryUsage" />
+                <property
+                  dataType="System.Null"
+                  description="Especifica o nome da tabela de índice de correspondência difusa a ser reutilizada ou o nome da tabela na qual uma tabela de índice de correspondência difusa recém-gerada será gravada."
+                  name="MatchIndexName"
+                  state="escaped" />
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome da exibição ou tabela de referência em relação à qual corresponder os registros de entrada."
+                  name="ReferenceTableName"
+                  state="escaped">_x005B_dbo_x005D_._x005B_ALIMENTOS01_x005D_</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica se uma tabela de índice de correspondência difusa existente deverá ser descartada se uma transformação for configurada para gerar uma nova tabela e uma tabela com o mesmo nome já existir."
+                  name="DropExistingMatchIndex">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Se uma cópia da tabela de referência deve ser feita para a construção e correspondência subsequente do índice de correspondência difusa. É altamente recomendável sempre fazer uma cópia, caso contrário poderão ocorrer resultados de saída imprevisíveis se o conteúdo da tabela de referência for alterado durante a execução do pacote (ou entre execuções se um índice de correspondência difusa estiver sendo reutilizado). Se essa propriedade for definida como false, a tabela de referência deverá ter adicionalmente um índice clusterizado criado com base em uma coluna de identidade de inteiro."
+                  name="CopyReferenceTable">1</property>
+                <property
+                  dataType="System.UInt32"
+                  description="Especifica o número máximo de correspondências difusas a serem retornadas para um registro de entrada."
+                  name="MaxOutputMatchesPerInput">1</property>
+                <property
+                  dataType="System.Single"
+                  description="Especifica a pontuação de similaridade mínima necessária para os resultados de correspondência retornados pela transformação."
+                  name="MinSimilarity">0.27</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o conjunto de caracteres de espaço em branco e pontuação usados para separar campos de correspondência difusa nas palavras usadas para correspondência e pontuação de uma pesquisa difusa."
+                  name="Delimiters"
+                  state="escaped">_x0020__x0009__x000D__x000A__x002C_._x003B_:-_x0022__x0027__x0026__x002F__x005C__x0040__x0021__x003F__x0028__x0029__x003C__x003E__x005B__x005D__x007B__x007D__x007C__x0023__x002A__x005E__x0025_</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica os metadados da tabela de referência no formato XML."
+                  name="ReferenceMetadataXml"
+                  state="escaped">_x003C_referenceMetadata_x003E__x003C_referenceColumns_x003E__x003C_referenceColumn_x0020_name_x003D__x0022_COD_x0022__x0020_dataType_x003D__x0022_DT_I4_x0022__x0020_length_x003D__x0022_0_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_0_x0022__x002F__x003E__x003C_referenceColumn_x0020_name_x003D__x0022_PRODUTO_x0022__x0020_dataType_x003D__x0022_DT_STR_x0022__x0020_length_x003D__x0022_255_x0022__x0020_precision_x003D__x0022_0_x0022__x0020_scale_x003D__x0022_0_x0022__x0020_codePage_x003D__x0022_1252_x0022__x002F__x003E__x003C__x002F_referenceColumns_x003E__x003C__x002F_referenceMetadata_x003E__x000D__x000A_</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Se true, cada registro de entrada será comparado diretamente a CADA dois registros na tabela de referência. isso poderá gerar resultados ligeiramente melhores, mas será um processo extremamente lento, a menos que o número de registros na tabela de referência seja muito pequeno. Observe que toda a tabela de referência será carregada na memória principal se essa opção for habilitada. Essa opção destina-se principalmente a fins de depuração e deve ser usada com cuidado."
+                  name="Exhaustive">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Se true, a Pesquisa Difusa carregará parcialmente o índice tolerante a erros e a tabela de referência na memória principal antes do início da execução. Isso poderá melhorar muito o desempenho se for necessário processar muitas linhas de entrada."
+                  name="WarmCaches">true</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Connections[OleDbConnection]"
+                  connectionManagerID="{419D6BE9-A09E-4DB6-AD98-BA0CAA67AA73}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[JAIR_AVELL.Exemplo]"
+                  description="Conexão e banco de dados do Microsoft SQL Server em que a tabela de referência de pesquisa difusa está localizada e na qual a tabela de índice de correspondência difusa será armazenada e acessada."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Inputs[Entrada de Pesquisa Difusa]"
+                  name="Entrada de Pesquisa Difusa">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Inputs[Entrada de Pesquisa Difusa].Columns[PRODUTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="PRODUTO"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="O nome da coluna de tabela de referência com a qual a coluna de entrada deverá corresponder."
+                          name="JoinToReferenceColumn"
+                          state="escaped">PRODUTO</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a correspondência é difusa ou exata."
+                          name="JoinType"
+                          typeConverter="tcJoinType">2</property>
+                        <property
+                          dataType="System.Single"
+                          description="Especifica o mínimo de similaridade textual necessário entre registros de entrada e de correspondência difusa em valores nesta coluna de junção em particular. Deve ser um valor de ponto flutuante entre 0.0 e 1.0."
+                          name="MinSimilarity">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere. Essas opções são aquelas com suporte da função FoldString."
+                          name="FuzzyComparisonFlags"
+                          typeConverter="tcComparisonFlags">1</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Sinalizadores para FoldString que devem ser usados ao comparar se duas cadeias de caracteres são equivalentes."
+                          name="FuzzyComparisonFlagsEx"
+                          typeConverter="tcComparisonFlagsEx">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa]"
+                  name="Saída de Pesquisa Difusa">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[PRODUTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[PRODUTO]"
+                      name="PRODUTO">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica a coluna da tabela de referência copiada na saída de cada resultado correspondente."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada da qual copiar para esta coluna de saída para cada correspondência."
+                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a coluna é usada para indicar confiança ou similaridade."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[PRODUTO (1)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[PRODUTO (1)]"
+                      name="PRODUTO (1)">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna da tabela de referência copiada na saída de cada resultado correspondente."
+                          name="CopyFromReferenceColumn"
+                          state="escaped">PRODUTO</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Null"
+                          description="Especifica o identificador de linhagem da coluna de entrada da qual copiar para esta coluna de saída para cada correspondência."
+                          name="SourceInputColumnLineageID" />
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a coluna é usada para indicar confiança ou similaridade."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[COD]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[COD]"
+                      name="COD">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna da tabela de referência copiada na saída de cada resultado correspondente."
+                          name="CopyFromReferenceColumn"
+                          state="escaped">COD</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Null"
+                          description="Especifica o identificador de linhagem da coluna de entrada da qual copiar para esta coluna de saída para cada correspondência."
+                          name="SourceInputColumnLineageID" />
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a coluna é usada para indicar confiança ou similaridade."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[_Similarity]"
+                      dataType="r4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[_Similarity]"
+                      name="_Similarity">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a coluna é usada para indicar confiança ou similaridade."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[_Confidence]"
+                      dataType="r4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[_Confidence]"
+                      name="_Confidence">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a coluna é usada para indicar confiança ou similaridade."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[_Similarity_PRODUTO]"
+                      dataType="r4"
+                      description="Column-level similarity score for fuzzy join on column &quot;PRODUTO&quot;."
+                      lineageId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa].Columns[_Similarity_PRODUTO]"
+                      name="_Similarity_PRODUTO">
+                      <properties>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica a coluna da tabela de referência copiada na saída de cada resultado correspondente."
+                          name="CopyFromReferenceColumn"
+                          state="escaped" />
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada da qual copiar para esta coluna de saída para cada correspondência."
+                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica se a coluna é usada para indicar confiança ou similaridade."
+                          name="ColumnType"
+                          typeConverter="tcColumnType">3</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+              endId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Inputs[Entrada de Pesquisa Difusa]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Pesquisa Difusa]"
+              endId="Package\Tarefa Fluxo de Dados\Multicast.Inputs[Multicast Entrada 1]"
+              name="Saída de Pesquisa Difusa"
+              startId="Package\Tarefa Fluxo de Dados\Pesquisa Difusa.Outputs[Saída de Pesquisa Difusa]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarefa Fluxo de Dados"
+          TopLeft="435,218" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarefa Fluxo de Dados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Tarefa Fluxo de Dados\Origem OLE DB"
+          TopLeft="467,143" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Tarefa Fluxo de Dados\Pesquisa Difusa"
+          TopLeft="534,310" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Tarefa Fluxo de Dados\Multicast"
+          TopLeft="524,487" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+          TopLeft="543,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.5,125"
+              Start="0,0"
+              End="67.5,117.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,58.5"
+                    Point2="0,62.5"
+                    Point3="4,62.5" />
+                  <mssgle:LineSegment
+                    End="63.5,62.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.5,62.5"
+                    Point2="67.5,62.5"
+                    Point3="67.5,66.5" />
+                  <mssgle:LineSegment
+                    End="67.5,117.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Pesquisa Difusa]"
+          TopLeft="610.5,352">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.5,135"
+              Start="0,0"
+              End="-26.5,127.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,63.5"
+                    Point2="0,67.5"
+                    Point3="-4,67.5" />
+                  <mssgle:LineSegment
+                    End="-22.5,67.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,67.5"
+                    Point2="-26.5,67.5"
+                    Point3="-26.5,71.5" />
+                  <mssgle:LineSegment
+                    End="-26.5,127.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-21.25,72.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Pesquisa Difusa">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
